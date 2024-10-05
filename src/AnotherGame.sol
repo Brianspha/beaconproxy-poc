@@ -6,6 +6,7 @@ import {IGame} from "./IGame.sol";
 contract AnotherGame is IGame {
     fallback() external {}
     function __Game_init() public override {}
+
     function startGame(address player) public virtual override returns (bool) {
         emit GameStarted(block.timestamp, player);
     }
@@ -14,16 +15,11 @@ contract AnotherGame is IGame {
         revert NotImplemented();
     }
 
-    function removePlayer(
-        address player
-    ) public virtual override returns (bool) {
+    function removePlayer(address player) public virtual override returns (bool) {
         revert NotImplemented();
     }
 
-    function whiteListWallet(
-        address wallet,
-        bool status
-    ) public virtual override returns (bool) {
+    function whiteListWallet(address wallet, bool status) public virtual override returns (bool) {
         revert NotImplemented();
     }
 

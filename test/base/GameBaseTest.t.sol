@@ -27,32 +27,21 @@ abstract contract GameBaseTest is Test {
         owner = _createUser("owner");
         owner1 = _createUser("owner1");
         vm.startPrank(owner);
-        address proxy = Upgrades.deployUUPSProxy(
-            "GameFactory.sol",
-            abi.encodeCall(GameFactory.initialize, ())
-        );
+        address proxy = Upgrades.deployUUPSProxy("GameFactory.sol", abi.encodeCall(GameFactory.initialize, ()));
         gameFactory = GameFactory(proxy);
         randomGame = new RandomGame();
         anotherGame = AnotherGame(gameFactory.createGame());
         Options memory opts;
         opts.unsafeSkipAllChecks = true;
         beaconFactory = new BeaconFactory(address(anotherGame));
-        playerAOneWallet = new AnotherWallet(
-            IGame(beaconFactory.createBeaconProxy("0x"))
-        );
-        playerATwoWallet = new AnotherWallet(
-            IGame(beaconFactory.createBeaconProxy("0x"))
-        );
-        playerAThreeWallet = new AnotherWallet(
-            IGame(beaconFactory.createBeaconProxy("0x"))
-        );
+        playerAOneWallet = new AnotherWallet(IGame(beaconFactory.createBeaconProxy("0x")));
+        playerATwoWallet = new AnotherWallet(IGame(beaconFactory.createBeaconProxy("0x")));
+        playerAThreeWallet = new AnotherWallet(IGame(beaconFactory.createBeaconProxy("0x")));
         vm.stopPrank();
     }
 
-    function _createUser(
-        string memory name
-    ) internal returns (address payable) {
-        (address user, ) = makeAddrAndKey(name);
+    function _createUser(string memory name) internal returns (address payable) {
+        (address user,) = makeAddrAndKey(name);
         vm.deal({account: user, newBalance: 1000 ether});
         vm.label(user, name);
         return payable(user);

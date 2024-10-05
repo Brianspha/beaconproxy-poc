@@ -23,9 +23,11 @@ contract GameFactoryBase is IGameFactory, UUPSUpgradeable, OwnableUpgradeable {
     function latestGame() external view override returns (address) {
         return games[games.length - 1];
     }
+
     function gameDeployed(address game) public view override returns (bool) {
         return deployedGames[game];
     }
+
     function createGame() external returns (address) {
         AnotherGame game = new AnotherGame();
         games.push(address(game));
@@ -33,7 +35,5 @@ contract GameFactoryBase is IGameFactory, UUPSUpgradeable, OwnableUpgradeable {
         return address(game);
     }
 
-    function _authorizeUpgrade(
-        address newImplementation
-    ) internal override onlyOwner {}
+    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 }

@@ -1,6 +1,15 @@
 [profile.default]
 src = "src"
 out = "out"
+evm_version="cancun"
 libs = ["lib"]
-
+ffi = true
+ast = true
+build_info = true
+extra_output = ["storageLayout"]
+gas_reports = ["*"]
+optimizer = true
+optimizer_runs = 50
+test = 'test'
+solc = '0.8.24'
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

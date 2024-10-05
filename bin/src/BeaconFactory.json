@@ -1,0 +1,825 @@
+{
+    "contractName": "BeaconFactory",
+    "abi": [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_implementation",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "implementation",
+                    "type": "address"
+                }
+            ],
+            "name": "BeaconInvalidImplementation",
+            "type": "error"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "owner",
+                    "type": "address"
+                }
+            ],
+            "name": "OwnableInvalidOwner",
+            "type": "error"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "OwnableUnauthorizedAccount",
+            "type": "error"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "previousOwner",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "OwnershipTransferred",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "implementation",
+                    "type": "address"
+                }
+            ],
+            "name": "Upgraded",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "bytes",
+                    "name": "data",
+                    "type": "bytes"
+                }
+            ],
+            "name": "createBeaconProxy",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "implementation",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "renounceOwnership",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "transferOwnership",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "newImplementation",
+                    "type": "address"
+                }
+            ],
+            "name": "upgradeTo",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.8.27+commit.40a35a09\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_implementation\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"BeaconInvalidImplementation\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"createBeaconProxy\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"THIS CONTRACT IS FOR LEARNING PURPOSES ONLY\",\"errors\":{\"BeaconInvalidImplementation(address)\":[{\"details\":\"The `implementation` of the beacon is invalid.\"}],\"OwnableInvalidOwner(address)\":[{\"details\":\"The owner is not a valid owner account. (eg. `address(0)`)\"}],\"OwnableUnauthorizedAccount(address)\":[{\"details\":\"The caller account is not authorized to perform an operation.\"}]},\"events\":{\"Upgraded(address)\":{\"details\":\"Emitted when the implementation returned by the beacon is changed.\"}},\"kind\":\"dev\",\"methods\":{\"implementation()\":{\"details\":\"Returns the current implementation address.\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"},\"upgradeTo(address)\":{\"details\":\"Upgrades the beacon to a new implementation. Emits an {Upgraded} event. Requirements: - msg.sender must be the owner of the contract. - `newImplementation` must be a contract.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/siphamandlamjoli/Documents/Github/events/src/BeaconFactory.sol\":\"BeaconFactory\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol\":{\"keccak256\":\"0xc163fcf9bb10138631a9ba5564df1fa25db9adff73bd9ee868a8ae1858fe093a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9706d43a0124053d9880f6e31a59f31bc0a6a3dc1acd66ce0a16e1111658c5f6\",\"dweb:/ipfs/QmUFmfowzkRwGtDu36cXV9SPTBHJ3n7dG9xQiK5B28jTf2\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x631188737069917d2f909d29ce62c4d48611d326686ba6683e26b72a23bfac0b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7a61054ae84cd6c4d04c0c4450ba1d6de41e27e0a2c4f1bcdf58f796b401c609\",\"dweb:/ipfs/QmUvtdp7X1mRVyC3CsHrtPbgoqWaXHp3S1ZR24tpAQYJWM\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol\":{\"keccak256\":\"0xdbef5f0c787055227243a7318ef74c8a5a1108ca3a07f2b3a00ef67769e1e397\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://08e39f23d5b4692f9a40803e53a8156b72b4c1f9902a88cd65ba964db103dab9\",\"dweb:/ipfs/QmPKn6EYDgpga7KtpkA8wV2yJCYGMtc9K4LkJfhKX2RVSV\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/access/Ownable.sol\":{\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6\",\"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/interfaces/IERC1967.sol\":{\"keccak256\":\"0xb25a4f11fa80c702bf5cd85adec90e6f6f507f32f4a8e6f5dbc31e8c10029486\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6917f8a323e7811f041aecd4d9fd6e92455a6fba38a797ac6f6e208c7912b79d\",\"dweb:/ipfs/QmShuYv55wYHGi4EFkDB8QfF7ZCHoKk2efyz3AWY1ExSq7\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol\":{\"keccak256\":\"0x9b072c98655328b9680664b222ad2c3523e156a6ab7eb3dc5430f56fc98887b8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://548693f119d09097a20adc025bd3d831d8b49469feb7ad3d802bbc8ab416e47e\",\"dweb:/ipfs/QmVPf8kJocZRivMSaD696uFUbeaCcMvHsTTRJoGeWgqNi9\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/proxy/Proxy.sol\":{\"keccak256\":\"0x463300d336ac9f41b0d1f1ab94fcc5d4e989968c14761c713bb0a7d95790b7d1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://dc291f647b082ba639673e552f495169e25f832474c8d765032bac46c898ab1d\",\"dweb:/ipfs/Qme6uGbUATE7JgxaqQ5SoaNc6m9CLn7tgZ7fJeD4efVeFd\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/proxy/beacon/BeaconProxy.sol\":{\"keccak256\":\"0x25052a8e6c783ab01f98a9ac7f521649be60b9963f352e2453997ba8fbc2d285\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://94ba3d98053a310582febe79742e566a36073f1f2645ddc772c638c84ae93b88\",\"dweb:/ipfs/QmTHUMHniPNJ9H2Ui2zgk35CZDSThg2nQ8j5sNXaNarL9D\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol\":{\"keccak256\":\"0xc59a78b07b44b2cf2e8ab4175fca91e8eca1eee2df7357b8d2a8833e5ea1f64c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5aa4f07e65444784c29cd7bfcc2341b34381e4e5b5da9f0c5bd00d7f430e66fa\",\"dweb:/ipfs/QmWRMh4Q9DpaU9GvsiXmDdoNYMyyece9if7hnfLz7uqzWM\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol\":{\"keccak256\":\"0x5920bac7215d12961e23b207f6e81a1d64aa4935a4469abe95b64a96a3c3007b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b34bb828c45c3a4ebf6c2c585971abf5089e61357a3818a2900c7e85b74a1299\",\"dweb:/ipfs/QmewGAzKsPXYfSjCKxuH1SekKxtdyzhdbdyxjF5gohLigt\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/utils/Address.sol\":{\"keccak256\":\"0xe484b91c24d898c84aebae9c06263523a27582e6c97909d9ea71a4e15dc44fa2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0ca1ffd7dbe0cf24fae85132e0b33bb26f6ff7935effd0d73f1f67e13bff4032\",\"dweb:/ipfs/QmetqL3cbjn5pR4vVtnkWZBYH5LPvEsPoVrd6bDwGe2ZfJ\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/utils/Context.sol\":{\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12\",\"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/utils/Errors.sol\":{\"keccak256\":\"0x3f6500df17ff64f838b357a58be5a2d8e8cc937db0cf10504c7049f13608ab66\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0a0285cedb657d751d809a543e7a3b8a3d541701046808b9d6b0fa2572bac256\",\"dweb:/ipfs/QmTaxGdRkw56LhPRc9F9SLTufmQ37XMgsihdESHREWpwRd\"]},\"/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol\":{\"keccak256\":\"0xb38a945832ca380d4ed08d91a6ebaf03fd66ea02057e574384fae3abf3ebc136\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f933ce488ce79c1366d44dca530b1cc4db25fa1380ae691effdd5e3eec8fd8a5\",\"dweb:/ipfs/Qmdyk8pSJasc9pZaRFRdmtX85BCs5faQ8xUKiWnzaEkFEt\"]},\"/Users/siphamandlamjoli/Documents/Github/events/src/BeaconFactory.sol\":{\"keccak256\":\"0x671d4fcbe93584bfb72eb01680e7e23e7c9442a872f737db7af5a510e0b2c77a\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://9625c4f7fe34876de63a873149437badb0ce7f166bb2035dda612320084f8c4b\",\"dweb:/ipfs/Qmd4d4WTz9aS8kPLck9Xk9RtnpWfz5AuKE6YYxKqZLhV3c\"]}},\"version\":1}",
+    "bytecode": "60803461010b57601f61096538819003918201601f19168301916001600160401b0383118484101761010f5780849260209460405283398101031261010b57516001600160a01b03811680820361010b5733156100f8575f8054336001600160a01b0319821681178355604051949290916001600160a01b0316907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09080a33b156100e657600180546001600160a01b031916821790557fbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b5f80a261084190816101248239f35b63211eb15960e21b5f5260045260245ffd5b631e4fbdf760e01b5f525f60045260245ffd5b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe60806040526004361015610011575f80fd5b5f3560e01c80633659cfe6146102b35780635c60da1b1461028b578063715018a6146102345780638da5cb5b1461020d578063d0b74ad4146100e85763f2fde38b1461005b575f80fd5b346100e45760203660031901126100e4576004356001600160a01b038116908190036100e457610089610331565b80156100d1575f80546001600160a01b03198116831782556001600160a01b0316907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09080a3005b631e4fbdf760e01b5f525f60045260245ffd5b5f80fd5b346100e45760203660031901126100e45760043567ffffffffffffffff81116100e457366023820112156100e457806004013567ffffffffffffffff81116101f95760405190601f8101601f19908116603f0116820167ffffffffffffffff8111838210176101f957604052808252602082019236602483830101116100e457815f9260246020930186378301015261017f610331565b604051916104b4908184019084821067ffffffffffffffff8311176101f95760609385936103588539308352604060208401525180918160408501528584015e5f848284010152601f8019910116010301905ff080156101ee576040516001600160a01b039091168152602090f35b6040513d5f823e3d90fd5b634e487b7160e01b5f52604160045260245ffd5b346100e4575f3660031901126100e4575f546040516001600160a01b039091168152602090f35b346100e4575f3660031901126100e45761024c610331565b5f80546001600160a01b0319811682556001600160a01b03167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a3005b346100e4575f3660031901126100e4576001546040516001600160a01b039091168152602090f35b346100e45760203660031901126100e4576004356001600160a01b038116908181036100e4576102e1610331565b3b1561031f57600180546001600160a01b031916821790557fbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b5f80a2005b63211eb15960e21b5f5260045260245ffd5b5f546001600160a01b0316330361034457565b63118cdaa760e01b5f523360045260245ffdfe60a0806040526104b480380380916100178285610292565b833981016040828203126101eb5761002e826102c9565b602083015190926001600160401b0382116101eb57019080601f830112156101eb57815161005b816102dd565b926100696040519485610292565b8184526020840192602083830101116101eb57815f926020809301855e84010152823b15610274577fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d5080546001600160a01b0319166001600160a01b038516908117909155604051635c60da1b60e01b8152909190602081600481865afa9081156101f7575f9161023a575b50803b1561021a5750817f1cf3b03a6cf19fa2baba4df148e9dcabedea7f8a5c07840e207e5c089be95d3e5f80a282511561020257602060049260405193848092635c60da1b60e01b82525afa9182156101f7575f926101ae575b505f809161018a945190845af43d156101a6573d9161016e836102dd565b9261017c6040519485610292565b83523d5f602085013e6102f8565b505b60805260405161015d908161035782396080518160180152f35b6060916102f8565b9291506020833d6020116101ef575b816101ca60209383610292565b810103126101eb575f80916101e161018a956102c9565b9394509150610150565b5f80fd5b3d91506101bd565b6040513d5f823e3d90fd5b505050341561018c5763b398979f60e01b5f5260045ffd5b634c9c8ce360e01b5f9081526001600160a01b0391909116600452602490fd5b90506020813d60201161026c575b8161025560209383610292565b810103126101eb57610266906102c9565b5f6100f5565b3d9150610248565b631933b43b60e21b5f9081526001600160a01b038416600452602490fd5b601f909101601f19168101906001600160401b038211908210176102b557604052565b634e487b7160e01b5f52604160045260245ffd5b51906001600160a01b03821682036101eb57565b6001600160401b0381116102b557601f01601f191660200190565b9061031c575080511561030d57805190602001fd5b63d6bda27560e01b5f5260045ffd5b8151158061034d575b61032d575090565b639996b31560e01b5f9081526001600160a01b0391909116600452602490fd5b50803b1561032556fe60806040819052635c60da1b60e01b81526020906004817f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03165afa80156100aa575f90156100db575060203d6020116100a3575b601f19601f820116608001906080821067ffffffffffffffff83111761008f5761008a916040526080016100b5565b6100db565b634e487b7160e01b5f52604160045260245ffd5b503d61005b565b6040513d5f823e3d90fd5b602090607f1901126100d7576080516001600160a01b03811681036100d75790565b5f80fd5b5f9081906001600160a01b0381167f8de3b40d362b23eb0629396eff6765ba7385647433a4e8edafdb64788ba5c9598380a2368280378136915af43d5f803e15610123573d5ff35b3d5ffdfea26469706673582212206688ce50adf4d50f9671c15a06d0674eced3e384ff8f800977ad5e300cfe491164736f6c634300081b0033a2646970667358221220104d19c1d2fcbdd99b683da9e01651f75d34b25f545a7cc4023aae954436fcc464736f6c634300081b0033",
+    "deployedBytecode": "60806040526004361015610011575f80fd5b5f3560e01c80633659cfe6146102b35780635c60da1b1461028b578063715018a6146102345780638da5cb5b1461020d578063d0b74ad4146100e85763f2fde38b1461005b575f80fd5b346100e45760203660031901126100e4576004356001600160a01b038116908190036100e457610089610331565b80156100d1575f80546001600160a01b03198116831782556001600160a01b0316907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09080a3005b631e4fbdf760e01b5f525f60045260245ffd5b5f80fd5b346100e45760203660031901126100e45760043567ffffffffffffffff81116100e457366023820112156100e457806004013567ffffffffffffffff81116101f95760405190601f8101601f19908116603f0116820167ffffffffffffffff8111838210176101f957604052808252602082019236602483830101116100e457815f9260246020930186378301015261017f610331565b604051916104b4908184019084821067ffffffffffffffff8311176101f95760609385936103588539308352604060208401525180918160408501528584015e5f848284010152601f8019910116010301905ff080156101ee576040516001600160a01b039091168152602090f35b6040513d5f823e3d90fd5b634e487b7160e01b5f52604160045260245ffd5b346100e4575f3660031901126100e4575f546040516001600160a01b039091168152602090f35b346100e4575f3660031901126100e45761024c610331565b5f80546001600160a01b0319811682556001600160a01b03167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a3005b346100e4575f3660031901126100e4576001546040516001600160a01b039091168152602090f35b346100e45760203660031901126100e4576004356001600160a01b038116908181036100e4576102e1610331565b3b1561031f57600180546001600160a01b031916821790557fbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b5f80a2005b63211eb15960e21b5f5260045260245ffd5b5f546001600160a01b0316330361034457565b63118cdaa760e01b5f523360045260245ffdfe60a0806040526104b480380380916100178285610292565b833981016040828203126101eb5761002e826102c9565b602083015190926001600160401b0382116101eb57019080601f830112156101eb57815161005b816102dd565b926100696040519485610292565b8184526020840192602083830101116101eb57815f926020809301855e84010152823b15610274577fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d5080546001600160a01b0319166001600160a01b038516908117909155604051635c60da1b60e01b8152909190602081600481865afa9081156101f7575f9161023a575b50803b1561021a5750817f1cf3b03a6cf19fa2baba4df148e9dcabedea7f8a5c07840e207e5c089be95d3e5f80a282511561020257602060049260405193848092635c60da1b60e01b82525afa9182156101f7575f926101ae575b505f809161018a945190845af43d156101a6573d9161016e836102dd565b9261017c6040519485610292565b83523d5f602085013e6102f8565b505b60805260405161015d908161035782396080518160180152f35b6060916102f8565b9291506020833d6020116101ef575b816101ca60209383610292565b810103126101eb575f80916101e161018a956102c9565b9394509150610150565b5f80fd5b3d91506101bd565b6040513d5f823e3d90fd5b505050341561018c5763b398979f60e01b5f5260045ffd5b634c9c8ce360e01b5f9081526001600160a01b0391909116600452602490fd5b90506020813d60201161026c575b8161025560209383610292565b810103126101eb57610266906102c9565b5f6100f5565b3d9150610248565b631933b43b60e21b5f9081526001600160a01b038416600452602490fd5b601f909101601f19168101906001600160401b038211908210176102b557604052565b634e487b7160e01b5f52604160045260245ffd5b51906001600160a01b03821682036101eb57565b6001600160401b0381116102b557601f01601f191660200190565b9061031c575080511561030d57805190602001fd5b63d6bda27560e01b5f5260045ffd5b8151158061034d575b61032d575090565b639996b31560e01b5f9081526001600160a01b0391909116600452602490fd5b50803b1561032556fe60806040819052635c60da1b60e01b81526020906004817f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03165afa80156100aa575f90156100db575060203d6020116100a3575b601f19601f820116608001906080821067ffffffffffffffff83111761008f5761008a916040526080016100b5565b6100db565b634e487b7160e01b5f52604160045260245ffd5b503d61005b565b6040513d5f823e3d90fd5b602090607f1901126100d7576080516001600160a01b03811681036100d75790565b5f80fd5b5f9081906001600160a01b0381167f8de3b40d362b23eb0629396eff6765ba7385647433a4e8edafdb64788ba5c9598380a2368280378136915af43d5f803e15610123573d5ff35b3d5ffdfea26469706673582212206688ce50adf4d50f9671c15a06d0674eced3e384ff8f800977ad5e300cfe491164736f6c634300081b0033a2646970667358221220104d19c1d2fcbdd99b683da9e01651f75d34b25f545a7cc4023aae954436fcc464736f6c634300081b0033",
+    "sourceMap": "580:359:14:-:0;;;;;;;;;;;;;-1:-1:-1;;580:359:14;;;;-1:-1:-1;;;;;580:359:14;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;580:359:14;;;;;;;716:10;1273:26:3;1269:95;;-1:-1:-1;580:359:14;;716:10;-1:-1:-1;;;;;;580:359:14;;;;;;;;;;716:10;;-1:-1:-1;;;;;580:359:14;;3052:40:3;;-1:-1:-1;3052:40:3;2009:29:9;:34;2005:118;;580:359:14;;;-1:-1:-1;;;;;;580:359:14;;;;;2182:27:9;-1:-1:-1;;2182:27:9;580:359:14;;;;;;;2005:118:9;2066:46;;;-1:-1:-1;2066:46:9;;580:359:14;;-1:-1:-1;2066:46:9;1269:95:3;1322:31;;;-1:-1:-1;1322:31:3;-1:-1:-1;1322:31:3;580:359:14;;-1:-1:-1;1322:31:3;580:359:14;-1:-1:-1;580:359:14;;;;;;-1:-1:-1;580:359:14;;;;;-1:-1:-1;580:359:14",
+    "deployedSourceMap": "580:359:14:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;580:359:14;;;;;;-1:-1:-1;;;;;580:359:14;;;;;;;;1500:62:3;;:::i;:::-;2627:22;;2623:91;;580:359:14;;;-1:-1:-1;;;;;;580:359:14;;;;;;-1:-1:-1;;;;;580:359:14;;3052:40:3;;580:359:14;3052:40:3;580:359:14;2623:91:3;2672:31;;;580:359:14;2672:31:3;580:359:14;;;;;2672:31:3;580:359:14;;;;;;;;;;-1:-1:-1;;580:359:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;580:359:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1500:62:3;;:::i;:::-;580:359:14;;863:36;;;;;;;;;;580:359;863:36;;;;;580:359;863:36;;;;;;887:4;580:359;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;863:36;;;580:359;863:36;;;;;580:359;;-1:-1:-1;;;;;580:359:14;;;;;;;;863:36;580:359;;;;;;;;;863:36;580:359;;;;;;;;;;;;;;;;;-1:-1:-1;;580:359:14;;;;;;;;-1:-1:-1;;;;;580:359:14;;;;;;;;;;;;;;-1:-1:-1;;580:359:14;;;;1500:62:3;;:::i;:::-;580:359:14;;;-1:-1:-1;;;;;;580:359:14;;;;-1:-1:-1;;;;;580:359:14;3052:40:3;580:359:14;;3052:40:3;580:359:14;;;;;;;-1:-1:-1;;580:359:14;;;;;;;;-1:-1:-1;;;;;580:359:14;;;;;;;;;;;;;;-1:-1:-1;;580:359:14;;;;;;-1:-1:-1;;;;;580:359:14;;;;;;;;1500:62:3;;:::i;:::-;2009:29:9;:34;2005:118;;2132:35;580:359:14;;-1:-1:-1;;;;;;580:359:14;;;;;2182:27:9;-1:-1:-1;;2182:27:9;580:359:14;2005:118:9;2066:46;;;580:359:14;2066:46:9;580:359:14;;;;2066:46:9;1796:162:3;1710:6;580:359:14;-1:-1:-1;;;;;580:359:14;735:10:11;1855:23:3;1851:101;;1796:162::o;1851:101::-;1901:40;;;1710:6;1901:40;735:10:11;1901:40:3;580:359:14;;1710:6:3;1901:40",
+    "sourcePath": "/Users/siphamandlamjoli/Documents/Github/events/src/BeaconFactory.sol",
+    "compiler": {
+        "name": "solc",
+        "version": "0.8.27+commit.40a35a09"
+    },
+    "ast": {
+        "absolutePath": "/Users/siphamandlamjoli/Documents/Github/events/src/BeaconFactory.sol",
+        "exportedSymbols": {
+            "BeaconFactory": [
+                1838
+            ],
+            "BeaconProxy": [
+                1059
+            ],
+            "OwnableUpgradeable": [
+                194
+            ],
+            "UpgradeableBeacon": [
+                1157
+            ]
+        },
+        "id": 1839,
+        "license": "UNLICENSED",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 1789,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".24"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "39:24:14"
+            },
+            {
+                "absolutePath": "/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/proxy/beacon/BeaconProxy.sol",
+                "file": "/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/proxy/beacon/BeaconProxy.sol",
+                "id": 1791,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 1839,
+                "sourceUnit": 1060,
+                "src": "65:142:14",
+                "symbolAliases": [
+                    {
+                        "foreign": {
+                            "id": 1790,
+                            "name": "BeaconProxy",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1059,
+                            "src": "73:11:14",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    }
+                ],
+                "unitAlias": ""
+            },
+            {
+                "absolutePath": "/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol",
+                "file": "/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol",
+                "id": 1793,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 1839,
+                "sourceUnit": 1158,
+                "src": "208:154:14",
+                "symbolAliases": [
+                    {
+                        "foreign": {
+                            "id": 1792,
+                            "name": "UpgradeableBeacon",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1157,
+                            "src": "216:17:14",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    }
+                ],
+                "unitAlias": ""
+            },
+            {
+                "absolutePath": "/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol",
+                "file": "/Users/siphamandlamjoli/Documents/Github/events/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol",
+                "id": 1795,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 1839,
+                "sourceUnit": 195,
+                "src": "363:162:14",
+                "symbolAliases": [
+                    {
+                        "foreign": {
+                            "id": 1794,
+                            "name": "OwnableUpgradeable",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 194,
+                            "src": "371:18:14",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    }
+                ],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [
+                    {
+                        "baseName": {
+                            "id": 1797,
+                            "name": "UpgradeableBeacon",
+                            "nameLocations": [
+                                "606:17:14"
+                            ],
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 1157,
+                            "src": "606:17:14"
+                        },
+                        "id": 1798,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "606:17:14"
+                    }
+                ],
+                "canonicalName": "BeaconFactory",
+                "contractDependencies": [
+                    1059
+                ],
+                "contractKind": "contract",
+                "documentation": {
+                    "id": 1796,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "527:53:14",
+                    "text": "@dev THIS CONTRACT IS FOR LEARNING PURPOSES ONLY"
+                },
+                "fullyImplemented": true,
+                "id": 1838,
+                "linearizedBaseContracts": [
+                    1838,
+                    1157,
+                    642,
+                    1446,
+                    1069
+                ],
+                "name": "BeaconFactory",
+                "nameLocation": "589:13:14",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "body": {
+                            "id": 1808,
+                            "nodeType": "Block",
+                            "src": "728:2:14",
+                            "statements": []
+                        },
+                        "id": 1809,
+                        "implemented": true,
+                        "kind": "constructor",
+                        "modifiers": [
+                            {
+                                "arguments": [
+                                    {
+                                        "id": 1803,
+                                        "name": "_implementation",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 1800,
+                                        "src": "699:15:14",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    {
+                                        "expression": {
+                                            "id": 1804,
+                                            "name": "msg",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 4294967281,
+                                            "src": "716:3:14",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_magic_message",
+                                                "typeString": "msg"
+                                            }
+                                        },
+                                        "id": 1805,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "memberLocation": "720:6:14",
+                                        "memberName": "sender",
+                                        "nodeType": "MemberAccess",
+                                        "src": "716:10:14",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    }
+                                ],
+                                "id": 1806,
+                                "kind": "baseConstructorSpecifier",
+                                "modifierName": {
+                                    "id": 1802,
+                                    "name": "UpgradeableBeacon",
+                                    "nameLocations": [
+                                        "681:17:14"
+                                    ],
+                                    "nodeType": "IdentifierPath",
+                                    "referencedDeclaration": 1157,
+                                    "src": "681:17:14"
+                                },
+                                "nodeType": "ModifierInvocation",
+                                "src": "681:46:14"
+                            }
+                        ],
+                        "name": "",
+                        "nameLocation": "-1:-1:-1",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 1801,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 1800,
+                                    "mutability": "mutable",
+                                    "name": "_implementation",
+                                    "nameLocation": "659:15:14",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 1809,
+                                    "src": "651:23:14",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 1799,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "651:7:14",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "641:39:14"
+                        },
+                        "returnParameters": {
+                            "id": 1807,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "728:0:14"
+                        },
+                        "scope": 1838,
+                        "src": "630:100:14",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 1836,
+                            "nodeType": "Block",
+                            "src": "833:104:14",
+                            "statements": [
+                                {
+                                    "assignments": [
+                                        1820
+                                    ],
+                                    "declarations": [
+                                        {
+                                            "constant": false,
+                                            "id": 1820,
+                                            "mutability": "mutable",
+                                            "name": "proxy",
+                                            "nameLocation": "855:5:14",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 1836,
+                                            "src": "843:17:14",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_contract$_BeaconProxy_$1059",
+                                                "typeString": "contract BeaconProxy"
+                                            },
+                                            "typeName": {
+                                                "id": 1819,
+                                                "nodeType": "UserDefinedTypeName",
+                                                "pathNode": {
+                                                    "id": 1818,
+                                                    "name": "BeaconProxy",
+                                                    "nameLocations": [
+                                                        "843:11:14"
+                                                    ],
+                                                    "nodeType": "IdentifierPath",
+                                                    "referencedDeclaration": 1059,
+                                                    "src": "843:11:14"
+                                                },
+                                                "referencedDeclaration": 1059,
+                                                "src": "843:11:14",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_contract$_BeaconProxy_$1059",
+                                                    "typeString": "contract BeaconProxy"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "id": 1830,
+                                    "initialValue": {
+                                        "arguments": [
+                                            {
+                                                "arguments": [
+                                                    {
+                                                        "id": 1826,
+                                                        "name": "this",
+                                                        "nodeType": "Identifier",
+                                                        "overloadedDeclarations": [],
+                                                        "referencedDeclaration": 4294967268,
+                                                        "src": "887:4:14",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_contract$_BeaconFactory_$1838",
+                                                            "typeString": "contract BeaconFactory"
+                                                        }
+                                                    }
+                                                ],
+                                                "expression": {
+                                                    "argumentTypes": [
+                                                        {
+                                                            "typeIdentifier": "t_contract$_BeaconFactory_$1838",
+                                                            "typeString": "contract BeaconFactory"
+                                                        }
+                                                    ],
+                                                    "id": 1825,
+                                                    "isConstant": false,
+                                                    "isLValue": false,
+                                                    "isPure": true,
+                                                    "lValueRequested": false,
+                                                    "nodeType": "ElementaryTypeNameExpression",
+                                                    "src": "879:7:14",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_type$_t_address_$",
+                                                        "typeString": "type(address)"
+                                                    },
+                                                    "typeName": {
+                                                        "id": 1824,
+                                                        "name": "address",
+                                                        "nodeType": "ElementaryTypeName",
+                                                        "src": "879:7:14",
+                                                        "typeDescriptions": {}
+                                                    }
+                                                },
+                                                "id": 1827,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": false,
+                                                "kind": "typeConversion",
+                                                "lValueRequested": false,
+                                                "nameLocations": [],
+                                                "names": [],
+                                                "nodeType": "FunctionCall",
+                                                "src": "879:13:14",
+                                                "tryCall": false,
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            {
+                                                "id": 1828,
+                                                "name": "data",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 1811,
+                                                "src": "894:4:14",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                }
+                                            ],
+                                            "id": 1823,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "nodeType": "NewExpression",
+                                            "src": "863:15:14",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_creation_payable$_t_address_$_t_bytes_memory_ptr_$returns$_t_contract$_BeaconProxy_$1059_$",
+                                                "typeString": "function (address,bytes memory) payable returns (contract BeaconProxy)"
+                                            },
+                                            "typeName": {
+                                                "id": 1822,
+                                                "nodeType": "UserDefinedTypeName",
+                                                "pathNode": {
+                                                    "id": 1821,
+                                                    "name": "BeaconProxy",
+                                                    "nameLocations": [
+                                                        "867:11:14"
+                                                    ],
+                                                    "nodeType": "IdentifierPath",
+                                                    "referencedDeclaration": 1059,
+                                                    "src": "867:11:14"
+                                                },
+                                                "referencedDeclaration": 1059,
+                                                "src": "867:11:14",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_contract$_BeaconProxy_$1059",
+                                                    "typeString": "contract BeaconProxy"
+                                                }
+                                            }
+                                        },
+                                        "id": 1829,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "nameLocations": [],
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "863:36:14",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_contract$_BeaconProxy_$1059",
+                                            "typeString": "contract BeaconProxy"
+                                        }
+                                    },
+                                    "nodeType": "VariableDeclarationStatement",
+                                    "src": "843:56:14"
+                                },
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "id": 1833,
+                                                "name": "proxy",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 1820,
+                                                "src": "924:5:14",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_contract$_BeaconProxy_$1059",
+                                                    "typeString": "contract BeaconProxy"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_contract$_BeaconProxy_$1059",
+                                                    "typeString": "contract BeaconProxy"
+                                                }
+                                            ],
+                                            "id": 1832,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "lValueRequested": false,
+                                            "nodeType": "ElementaryTypeNameExpression",
+                                            "src": "916:7:14",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_type$_t_address_$",
+                                                "typeString": "type(address)"
+                                            },
+                                            "typeName": {
+                                                "id": 1831,
+                                                "name": "address",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "916:7:14",
+                                                "typeDescriptions": {}
+                                            }
+                                        },
+                                        "id": 1834,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "typeConversion",
+                                        "lValueRequested": false,
+                                        "nameLocations": [],
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "916:14:14",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "functionReturnParameters": 1817,
+                                    "id": 1835,
+                                    "nodeType": "Return",
+                                    "src": "909:21:14"
+                                }
+                            ]
+                        },
+                        "functionSelector": "d0b74ad4",
+                        "id": 1837,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [
+                            {
+                                "id": 1814,
+                                "kind": "modifierInvocation",
+                                "modifierName": {
+                                    "id": 1813,
+                                    "name": "onlyOwner",
+                                    "nameLocations": [
+                                        "805:9:14"
+                                    ],
+                                    "nodeType": "IdentifierPath",
+                                    "referencedDeclaration": 553,
+                                    "src": "805:9:14"
+                                },
+                                "nodeType": "ModifierInvocation",
+                                "src": "805:9:14"
+                            }
+                        ],
+                        "name": "createBeaconProxy",
+                        "nameLocation": "745:17:14",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 1812,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 1811,
+                                    "mutability": "mutable",
+                                    "name": "data",
+                                    "nameLocation": "785:4:14",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 1837,
+                                    "src": "772:17:14",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 1810,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "772:5:14",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "762:33:14"
+                        },
+                        "returnParameters": {
+                            "id": 1817,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 1816,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 1837,
+                                    "src": "824:7:14",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 1815,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "824:7:14",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "823:9:14"
+                        },
+                        "scope": 1838,
+                        "src": "736:201:14",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 1839,
+                "src": "580:359:14",
+                "usedErrors": [
+                    508,
+                    513,
+                    1087
+                ],
+                "usedEvents": [
+                    519,
+                    1092
+                ]
+            }
+        ],
+        "src": "39:901:14"
+    },
+    "functionHashes": {
+        "createBeaconProxy(bytes)": "d0b74ad4",
+        "implementation()": "5c60da1b",
+        "owner()": "8da5cb5b",
+        "renounceOwnership()": "715018a6",
+        "transferOwnership(address)": "f2fde38b",
+        "upgradeTo(address)": "3659cfe6"
+    },
+    "gasEstimates": {
+        "creation": {
+            "codeDepositCost": "422600",
+            "executionCost": "infinite",
+            "totalCost": "infinite"
+        },
+        "external": {
+            "createBeaconProxy(bytes)": "infinite",
+            "implementation()": "2294",
+            "owner()": "2337",
+            "renounceOwnership()": "28086",
+            "transferOwnership(address)": "28230",
+            "upgradeTo(address)": "30321"
+        }
+    }
+}
